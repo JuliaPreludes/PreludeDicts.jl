@@ -1,0 +1,11 @@
+name = "PreludeDictsBenchmarks"
+uuid = "299a2da3-2932-4e33-8b5f-b27be43c5610"
+authors = ["Takafumi Arakaki <aka.tkf@gmail.com> and contributors"]
+version = "0.1.0-DEV"
+
+[deps]
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
+PreludeDicts = "8edb0fba-2c06-4136-bc13-43dbc7afa247"
+
+[compat]
+julia = "1.6"

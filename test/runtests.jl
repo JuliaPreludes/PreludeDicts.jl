@@ -1,6 +1,2 @@
-using PreludeDicts
-using Test
-
-@testset "PreludeDicts.jl" begin
-    # Write your tests here.
-end
+using TestFunctionRunner
+TestFunctionRunner.@run(paths = ["../benchmark/PreludeDictsBenchmarks/"])
