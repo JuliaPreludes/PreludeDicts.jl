@@ -1,4 +1,11 @@
-using Try
+const Try = Base.require(Base.PkgId(Base.UUID(0xbf1d0ff0c4a9496b85f02b0d71c4f32a), "Try"))
+using .Try
+
+if !@isdefined(Returns)
+    const Compat =
+        Base.require(Base.PkgId(Base.UUID(0x34da2185b29b5c13b0c7acf172513d20), "Compat"))
+    using .Compat: Returns
+end
 
 struct Keep{Value}
     value::Value
