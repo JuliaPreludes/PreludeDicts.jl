@@ -34,6 +34,7 @@ end
 
 include("utils.jl")
 include("generic.jl")
+include("show.jl")
 
 include("unsafe_impls.jl")
 include("maybe_use_unsafe.jl")

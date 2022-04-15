@@ -74,4 +74,16 @@ end
 test_default_inc() = check_inc(modify!)
 test_generic_inc() = check_inc(PreludeDicts.modify_generic!)
 
+function test_keep()
+    @test endswith(sprint(show, Keep(111)), "Keep(111)")
+    @test endswith(sprint(show, Keep{Integer}(111)), "Keep{Integer}(111)")
+    @test Keep(111)[] == 111
+end
+
+function test_delete()
+    @test endswith(sprint(show, Delete(111)), "Delete(111)")
+    @test endswith(sprint(show, Delete{Integer}(111)), "Delete{Integer}(111)")
+    @test Delete(111)[] == 111
+end
+
 end  # module

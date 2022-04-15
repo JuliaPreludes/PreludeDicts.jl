@@ -35,6 +35,9 @@ function PreludeDicts.modify_generic!(f::Returns, dict, key)
     return reply
 end
 
+Base.getindex(x::Keep) = x.value
+Base.getindex(x::Delete) = x.value
+
 struct RecordIfCalled{F} <: Function
     f::F
     iscalled::typeof(Ref(false))
