@@ -1,6 +1,10 @@
 function is_unsafe_usable(; out = stderr, stdout = out, stderr = out)
-    script = joinpath(@__DIR__, "check_unsafe_impls.jl")
-    cmd = `$(Base.julia_cmd()) --startup-file=no $script`
+    path = joinpath(@__DIR__, "check_unsafe_impls.jl")
+    script = """
+    $(Base.load_path_setup_code())
+    include($(repr(path)))
+    """
+    cmd = `$(Base.julia_cmd()) --startup-file=no -e $script`
     return success(pipeline(cmd; stdin = devnull, stdout, stderr))
 end
 
