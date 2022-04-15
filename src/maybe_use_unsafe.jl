@@ -9,6 +9,8 @@ function is_unsafe_usable(; out = stderr, stdout = out, stderr = out)
 end
 
 const USE_UNSAFE = is_unsafe_usable(; out = devnull)
+include_dependency("check_unsafe_impls.jl")
+
 @static if USE_UNSAFE
     PreludeDicts.modify!(f::F, dict::Dict, k) where {F} = modify_unsafe!(f, dict, k)
     PreludeDicts.trysetwith!(factory::F, dict::Dict, k) where {F} =
