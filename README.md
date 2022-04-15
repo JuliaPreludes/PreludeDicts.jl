@@ -288,12 +288,12 @@ Other dictionary interfaces have been explored.
 avoid repeatedly calling hash function and probings.  Other languages have similar
 mechanism. For example, Rust's `HashMap` has the [`Entry`
 API](https://doc.rust-lang.org/std/collections/hash_map/enum.Entry.html) that achieves the
-same effect.  Since Julia has coroutine (`Task`), the token system is "isomorphic" to
-`modify!` in the sense that one can be implemented in terms of another (see below).
+same effect.  However, since Julia has coroutine (`Task`), the token system is "isomorphic"
+to `modify!` in the sense that one can be implemented in terms of another (see below).
 
-However, `modify!` gives more freedom to *the dictionary implementer* in how the function
-`f` passed by the user is called.  For example, in lock-free dictionaries, it may be
-possible that `f` is called multiple times if multiple tasks try to update the same slot
+More importantly, `modify!` gives more freedom to *the dictionary implementer* in how the
+function `f` passed by the user is called.  For example, in lock-free dictionaries, it may
+be possible that `f` is called multiple times if multiple tasks try to update the same slot
 concurrently.  Indeed,
 [ConcurrentCollections](https://github.com/JuliaConcurrent/ConcurrentCollections.jl) uses a
 similar API to manipulate `ConcurrentDict`.  (TODO: Use PreludeDicts.jl in
