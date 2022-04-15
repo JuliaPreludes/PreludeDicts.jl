@@ -1,6 +1,7 @@
 module TestModify
 
 using PreludeDicts
+using PreludeDicts.Internal: Returns
 using Test
 
 returns_nothing(_) = nothing

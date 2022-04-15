@@ -3,6 +3,9 @@ module TestDoctest
 using PreludeDicts
 using Documenter
 
-test() = doctest(PreludeDicts; manual = false)
+function test()
+    VERSION < v"1.7" && return
+    doctest(PreludeDicts; manual = false)
+end
 
 end  # module

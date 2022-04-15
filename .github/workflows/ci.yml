@@ -14,7 +14,7 @@ jobs:
       matrix:
         julia-version:
           - '1'
-          # - '1.6'
+          - '1.6'
           - 'nightly'
       fail-fast: false
     name: Test Julia ${{ matrix.julia-version }}
@@ -37,7 +37,7 @@ jobs:
       matrix:
         julia-version:
           - '1'
-          # - '1.6'
+          - '1.6'
           - 'nightly'
       fail-fast: false
     steps:
@@ -45,7 +45,30 @@ jobs:
       - uses: julia-actions/setup-julia@v1
         with:
           version: ${{ matrix.julia-version }}
-      - uses: tkf/julia-aqua@v1
+      - name: Install dependencies
+        run: |
+          using Pkg
+          Pkg.develop(PackageSpec(path = "."))
+          Pkg.add([
+              PackageSpec(name = "TOML", version = "1"),
+              PackageSpec(name = "Aqua", version = "0.5"),
+          ])
+        shell: julia --color=yes {0}
+      - name: Run Aqua
+        run: |
+          using Aqua
+          using TOML
+          name = Symbol(TOML.parsefile("Project.toml")["name"])
+          @eval using $name
+          Aqua.test_all(
+              @eval $name;
+              stale_deps = if @isdefined(Returns)
+                  (; ignore = [:Compat])
+              else
+                  true
+              end,
+          )
+        shell: julia --color=yes {0}
 
   # https://github.com/tkf/julia-code-style-suggesters
   code-style:

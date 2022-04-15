@@ -28,6 +28,10 @@ using ..PreludeDicts: PreludeDicts, Keep, Delete
 
 const Result = Union{Ok,Err}
 
+if !@isdefined(Returns)
+    using Compat: Returns
+end
+
 include("utils.jl")
 include("generic.jl")
 
