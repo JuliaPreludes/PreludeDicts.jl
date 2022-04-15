@@ -1,7 +1,7 @@
 # PreludeDicts: fundamental APIs for dictionaries and sets
 
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://juliapreludes.github.io/PreludeDicts.jl/dev)
-[![CI](https://github.com/JuliaPreludes/PreludeDicts.jl/actions/workflows/test.yml/badge.svg)](https://github.com/JuliaPreludes/PreludeDicts.jl/actions/workflows/test.yml)
+[![CI](https://github.com/JuliaPreludes/PreludeDicts.jl/actions/workflows/ci.yml/badge.svg)](https://github.com/JuliaPreludes/PreludeDicts.jl/actions/workflows/ci.yml)
 [![Aqua QA](https://raw.githubusercontent.com/JuliaTesting/Aqua.jl/master/badge.svg)](https://github.com/JuliaTesting/Aqua.jl)
 
 The primary function of PreludeDicts.jl is `modify!` which is a very flexible API (e.g., all
