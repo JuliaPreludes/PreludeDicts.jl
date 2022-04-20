@@ -70,6 +70,15 @@ PreludeDicts.tryset!(dict, key, value) = PreludeDicts.trysetwith!(Returns(value)
 PreludeDicts.tryset_generic!(dict, key, value) =
     PreludeDicts.trysetwith_generic!(Returns(value), dict, key)
 
+function PreludeDicts.tryget(dict, key)
+    value = get(dict, key, NOTSET)
+    if value === NOTSET
+        return Err(TypedKeyError(key))
+    else
+        return Ok{valtype(dict)}(value)
+    end
+end
+
 PreludeDicts.tryinsert!(set, x) = PreludeDicts.tryinsert_generic!(set, x)
 function PreludeDicts.tryinsert_generic!(set::AbstractSet{T}, x)::Result where {T}
     x = convert(eltype(set), x)

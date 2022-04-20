@@ -31,6 +31,18 @@ function test_tryset_object()
     @test tryset!(dict, k2, 222) == Err(k1 => 111)
 end
 
+function test_tryget()
+    dict = Dict(:a => 111)
+    @test tryget(dict, :a) === Ok(111)
+    @test tryget(dict, :b) === Err(TypedKeyError(:b))
+end
+
+function test_typedkeyerror()
+    @test endswith(sprint(show, TypedKeyError(:b)), "TypedKeyError(:b)")
+    @test endswith(sprint(show, TypedKeyError{Any}(:b)), "TypedKeyError{Any}(:b)")
+    @test sprint(showerror, TypedKeyError(:b)) == "TypedKeyError: key :b not found"
+end
+
 function check_tryinsert_simple(tryinsert!)
     set = Set()
     @test tryinsert!(set, 111) === Ok{Any}(111)

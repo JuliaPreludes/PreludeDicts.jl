@@ -23,3 +23,24 @@ function Base.show(io::IO, x::Delete{T}) where {T}
     show(IOContext(io, :typeinfo => T), value)
     print(io, ")")
 end
+
+function Base.show(io::IO, ex::TypedKeyError{Key}) where {Key}
+    @nospecialize ex
+    key = ex.key
+    if typeof(key) === Key
+        print(io, TypedKeyError)
+    else
+        print(io, TypedKeyError{Key})
+    end
+    print(io, "(")
+    show(IOContext(io, :typeinfo => Key), key)
+    print(io, ")")
+end
+
+function Base.showerror(io::IO, ex::TypedKeyError{Key}) where {Key}
+    @nospecialize ex
+    key = ex.key
+    print(io, "TypedKeyError: key ")
+    show(io, key)
+    print(io, " not found")
+end
