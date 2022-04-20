@@ -9,8 +9,9 @@ The primary function of PreludeDicts.jl is `modify!` which is a very flexible AP
 [lock-free dictionaries](https://github.com/JuliaConcurrent/ConcurrentCollections.jl) can
 support this API).
 
-PreludeDicts.jl also has functions `tryset!`, `trysetwith!` and `tryinsert!` using efficient
-and debuggable error handling API [Try.jl](https://github.com/JuliaPreludes/Try.jl).
+PreludeDicts.jl also has functions `tryset!`, `trysetwith!`, `tryget` and `tryinsert!` using
+efficient and debuggable error handling API
+[Try.jl](https://github.com/JuliaPreludes/Try.jl).
 
 See the [Documentation](https://juliapreludes.github.io/PreludeDicts.jl/dev/) for API
 reference.
@@ -170,6 +171,21 @@ Try.Ok: :b => 222
 
 julia> dict == Dict(:a => 111, :b => 222)
 true
+```
+
+### `tryget`
+
+`tryget(dict, key)` is similar to `dict[key]` but the returned value encodes if the `key`
+exists or not, instead of throwing.
+
+```julia
+julia> dict = Dict(:a => 111);
+
+julia> tryget(dict, :a)
+Try.Ok: 111
+
+julia> tryget(dict, :b)
+Try.Err: TypedKeyError: key :b not found
 ```
 
 ### `tryinsert!`
