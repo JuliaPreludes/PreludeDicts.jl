@@ -15,5 +15,6 @@ PreludeDicts.Delete
 PreludeDicts.Keep
 PreludeDicts.tryset!
 PreludeDicts.trysetwith!
+PreludeDicts.tryget
 PreludeDicts.tryinsert!
 ```
