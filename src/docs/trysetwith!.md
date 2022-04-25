@@ -1,8 +1,8 @@
-    trysetwith!(factory, dict, key) -> Ok(new_value) or Err(existing_value)
+    trysetwith!(factory, dict, key) -> Ok(key′ => value′) or Err(key′ => dict[key′])
 
-Set `dict[key] = factory()` if `dict[key]` does not exist and return `Ok(new_value)` where
-the `new_value` is the value just inserted at `dict[key]`. Return `Err(dict[key])` if
-`dict[key]` exists.
+Set `dict[key] = factory()` if `dict[key]` does not exist and return `Ok(key′ => value′)`
+where the `key′ => value′` is the key-value pair just inserted at `dict[key]`. Return
+`Err(key′ => dict[key])` if `dict[key]` exists.
 
 # Extended help
 
